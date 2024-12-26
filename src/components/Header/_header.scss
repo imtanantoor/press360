@@ -29,3 +29,14 @@ a{
         color: $secondary-color;
     }
 }
+
+.search-bar{
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid white;
+    background-color: transparent;
+    
+    &::placeholder {
+        color: white;
+    }
+}

@@ -9,11 +9,13 @@ function ArticleList({
   title: string;
 }) {
   return (
-    <div>
-      <h2>{title}</h2>
-      {articles.map((article) => (
-        <ArticleCard key={article.id} article={article} />
-      ))}
+    <div className="article-list">
+      <h2 className="article-list-title">{title}</h2>
+      <div className="article-list-container">
+        {articles.map((article) => (
+          <ArticleCard key={article.id} article={article} />
+        ))}
+      </div>
     </div>
   );
 }
