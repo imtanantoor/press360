@@ -13,9 +13,16 @@ function SportsPage() {
 
   useEffect(() => {
     const articleService = ArticleService.getInstance();
-    articleService.getArticles().then((articles) => setArticles(articles));
+    articleService
+      .searchArticles({
+        q: "sports",
+        category: "sports",
+        page: "1",
+        pageSize: "5",
+      })
+      .then((articles) => setArticles(articles));
   }, []);
-  
+
   return (
     <div>
       <HeroArticle article={articlesWithImage[0]} />

@@ -8,7 +8,7 @@ abstract class ContentSource {
   ) {}
 
   abstract getAllContent(): Promise<ArticleItem[]>;
-  abstract searchContent(query: string): Promise<ArticleItem[]>;
+  abstract searchContent(searchParams: Record<string, string>): Promise<ArticleItem[]>;
 }
 
 export default ContentSource;

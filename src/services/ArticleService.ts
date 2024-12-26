@@ -5,6 +5,7 @@ class ArticleService {
   private static instance: ArticleService;
   private readonly sources: ContentSource[] = [];
   private readonly aggregatedContent: ArticleItem[] = [];
+  private readonly aggregatedSearchContent: ArticleItem[] = [];
 
   constructor() {}
 
@@ -26,6 +27,14 @@ class ArticleService {
     }
 
     return this.aggregatedContent;
+  }
+
+  async searchArticles(searchParams: Record<string, string>): Promise<ArticleItem[]> {
+    for (const source of this.sources) {
+      const articles = await source.searchContent(searchParams);
+      this.aggregatedSearchContent.push(...articles);
+    }
+    return this.aggregatedSearchContent;
   }
 }
 

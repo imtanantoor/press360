@@ -9,10 +9,10 @@ class ApiContentService extends ContentSource {
   constructor(
     readonly name: string,
     readonly url: string,
-    readonly responseFormatter:(data:any)=>ArticleItem[],
+    readonly responseFormatter: (data: any) => ArticleItem[],
     filters: Record<string, string>
   ) {
-    super(name, url,responseFormatter);
+    super(name, url, responseFormatter);
     this.filters = filters;
   }
 
@@ -28,8 +28,18 @@ class ApiContentService extends ContentSource {
     }
   }
 
-  async searchContent(query: string): Promise<ArticleItem[]> {
-    return [];
+  async searchContent(
+    searchParams: Record<string, string>
+  ): Promise<ArticleItem[]> {
+    try {
+      const response = await axios.get(
+        `${this.url}${buildParams({ ...this.filters, ...searchParams })}`
+      );
+      return this.responseFormatter(response.data);
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
   }
 }
 
