@@ -11,7 +11,7 @@ function HomePage() {
   const articlesWithImage = articles.filter((article) => article.image);
 
   useEffect(() => {
-    const articleService = new ArticleService();
+    const articleService = ArticleService.getInstance();
     articleService.addSource(
       new ApiContentService(
         "NewsAPI",
@@ -19,7 +19,6 @@ function HomePage() {
         ResponseFormatter.formatNewsAPIResponse,
         {
           apiKey: "c290bf206d824a7a92fdc5c2c3037342",
-          pageSize: "10",
           country: "us",
         }
       )
