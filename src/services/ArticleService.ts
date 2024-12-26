@@ -3,7 +3,7 @@ import ContentSource from "../models/ContentSource";
 
 class ArticleService {
   private static instance: ArticleService;
-  private readonly sources: ContentSource[] = [];
+  private sources: ContentSource[] = [];
   private readonly aggregatedContent: ArticleItem[] = [];
   private readonly aggregatedSearchContent: ArticleItem[] = [];
 
@@ -18,6 +18,10 @@ class ArticleService {
 
   addSource(source: ContentSource) {
     this.sources.push(source);
+  }
+
+  removeSource(source: ContentSource) {
+    this.sources = this.sources.filter((s) => s.name !== source.name);
   }
 
   async getArticles(): Promise<ArticleItem[]> {

@@ -2,9 +2,9 @@ import ArticleItem from "./ArticleItem";
 
 abstract class ContentSource {
   constructor(
-    name: string,
-    url: string,
-    responseFormatter: (data: any) => ArticleItem[]
+    readonly name: string,
+    readonly url: string,
+    readonly responseFormatter: (data: any) => ArticleItem[]
   ) {}
 
   abstract getAllContent(): Promise<ArticleItem[]>;
