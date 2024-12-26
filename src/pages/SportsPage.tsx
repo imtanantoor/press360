@@ -9,6 +9,9 @@ import HeroArticle from "../components/Article/HeroArticle";
 function SportsPage() {
   const [articles, setArticles] = useState<ArticleItem[]>([]);
   const articlesWithImage = articles.filter((article) => article.image);
+  const articlesFromGuardian = articles.filter(
+    (article) => article.source === "The Guardian"
+  );
 
   useEffect(() => {
     const articleService = new ArticleService();
@@ -25,12 +28,26 @@ function SportsPage() {
         }
       )
     );
+    articleService.addSource(
+      new ApiContentService(
+        "The Guardian",
+        "https://content.guardianapis.com/search",
+        ResponseFormatter.formatGuardianAPIResponse,
+        {
+          "api-key": "6ad89547-81bc-4318-8dc7-0eecb1f5c274",
+          q: "sports",
+          page: "1",
+          pageSize: "10",
+        }
+      )
+    );
     articleService.getArticles().then((articles) => setArticles(articles));
   }, []);
   return (
     <div>
       <HeroArticle article={articlesWithImage[0]} />
-      <ArticleList articles={articlesWithImage} title="All" />
+      <ArticleList articles={articlesWithImage} title="Latest in Sports" />
+      <ArticleList articles={articlesFromGuardian} title="The Guardian" />
     </div>
   );
 }

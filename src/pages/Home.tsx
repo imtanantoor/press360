@@ -39,7 +39,7 @@ function HomePage() {
 
   return (
     <div>
-      <HeroArticle article={articles[0]} />
+      <HeroArticle article={articlesWithImage[0]} />
       <ArticleList articles={articlesWithImage} title="Latest Articles" />
     </div>
   );
