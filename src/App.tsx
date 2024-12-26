@@ -1,14 +1,8 @@
-import './App.css';
+import "./App.scss";
+import AppRoutes from "./routes";
 
 function App() {
-  return (
-    <main>
-      <h1> Press 360</h1>
-      <p>
-      Press 360 is for news feedas
-      </p>
-    </main>
-  );
+  return <AppRoutes />;
 }
 
 export default App;

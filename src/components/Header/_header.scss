@@ -1,0 +1,31 @@
+@import '../../variables.scss';
+header{
+    position: sticky;
+    top: 0;
+    background: $primary-color;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h1{
+        color: white;
+        background-color: $secondary-color;
+        padding: 10px;
+    }
+    nav{
+        display: flex;
+        a {
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0 10px;
+        }
+    }
+}
+
+a{
+    color: white;
+    text-decoration: none;
+    &:hover{
+        color: $secondary-color;
+    }
+}

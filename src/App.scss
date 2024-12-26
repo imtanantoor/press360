@@ -1,0 +1,13 @@
+@use './components/Article/_article.scss' as article;
+@use './components/Header/_header.scss' as header;
+@import './variables.scss';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: $neutral-background;
+}
