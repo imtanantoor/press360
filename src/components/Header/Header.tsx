@@ -23,11 +23,11 @@ const Header: React.FC = () => {
           Entertainment
         </NavLink>
         <NavLink
-          to="/technology"
-          aria-label="Press Technology"
+          to="/science"
+          aria-label="Press Science"
           className={({ isActive }) => (isActive ? "active" : "")}
         >
-          Technology
+          Science
         </NavLink>
       </nav>
       <SearchBar />
