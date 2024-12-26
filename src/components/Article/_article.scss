@@ -14,15 +14,17 @@
     height: 150px;
     object-fit: cover;
   }
-}
-
-.article-card-content{
   h2{
     font-size: 1rem;
     font-weight: bold;
     margin: 0.5rem 0;
   }
+}
+
+.article-card-content{
+  
   max-height: 200px;
+  margin-bottom: 1rem;
   overflow: auto;
 }
 
@@ -37,7 +39,6 @@
 }
 
 .hero-article {
-  padding: 1rem;
   min-height: 500px;
   display: flex;
   flex-direction: row;
