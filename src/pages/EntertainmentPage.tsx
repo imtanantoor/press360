@@ -4,20 +4,20 @@ import ArticleService from "../services/ArticleService";
 import ArticleList from "../components/Article/ArticleList";
 import HeroArticle from "../components/Article/HeroArticle";
 
-function SportsPage() {
+function EntertainmentPage() {
   const [articles, setArticles] = useState<ArticleItem[]>([]);
   const articlesWithImage = articles.filter((article) => article.image);
+  const [loading, setLoading] = useState(true);
   const articlesFromGuardian = articles.filter(
     (article) => article.source === "The Guardian"
   );
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const articleService = ArticleService.getInstance();
     articleService
       .searchArticles({
-        q: "sports",
-        category: "sports",
+        q: "entertainment",
+        category: "entertainment",
         page: "1",
         pageSize: "5",
       })
@@ -32,7 +32,7 @@ function SportsPage() {
       {loading ? <div>Loading...</div> : (
         <>
           <HeroArticle article={articlesWithImage[0]} />
-          <ArticleList articles={articlesWithImage} title="Latest in Sports" />
+          <ArticleList articles={articlesWithImage} title="Latest in Entertainment" />
           <ArticleList articles={articlesFromGuardian} title="The Guardian" />
         </>
       )}
@@ -40,4 +40,4 @@ function SportsPage() {
   );
 }
 
-export default SportsPage;
+export default EntertainmentPage;
