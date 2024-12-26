@@ -8,6 +8,7 @@ import HeroArticle from "../components/Article/HeroArticle";
 
 function HomePage() {
   const [articles, setArticles] = useState<ArticleItem[]>([]);
+  const articlesWithImage = articles.filter((article) => article.image);
 
   useEffect(() => {
     const articleService = new ArticleService();
@@ -39,7 +40,7 @@ function HomePage() {
   return (
     <div>
       <HeroArticle article={articles[0]} />
-      <ArticleList articles={articles} title="Latest Articles" />
+      <ArticleList articles={articlesWithImage} title="Latest Articles" />
     </div>
   );
 }
