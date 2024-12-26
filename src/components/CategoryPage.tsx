@@ -3,6 +3,7 @@ import ArticleItem from "../models/ArticleItem";
 import ArticleService from "../services/ArticleService";
 import ArticleList from "./Article/ArticleList";
 import HeroArticle from "./Article/HeroArticle";
+import { useLocation } from "react-router";
 
 interface CategoryPageProps {
   readonly category: string;
@@ -10,10 +11,11 @@ interface CategoryPageProps {
   readonly pageSize?: string;
 }
 
-function CategoryPage({ category, query = category, pageSize = "10" }: CategoryPageProps) {
+function CategoryPage({ category, query = '', pageSize = "10" }: CategoryPageProps) {
   const [articles, setArticles] = useState<ArticleItem[]>([]);
   const [loading, setLoading] = useState(true);
-
+  const location = useLocation();
+  const queryParam = !!query ? query : new URLSearchParams(location.search).get("q");
   const articlesWithImage = articles.filter((article) => article.image);
   const articlesFromGuardian = articles.filter(
     (article) => article.source === "The Guardian"
@@ -23,8 +25,9 @@ function CategoryPage({ category, query = category, pageSize = "10" }: CategoryP
     const articleService = ArticleService.getInstance();
     articleService
       .searchArticles({
-        q: query,
+        q: queryParam ?? '',
         category: category,
+        section: category,
         page: "1",
         pageSize: pageSize,
       })
@@ -32,7 +35,7 @@ function CategoryPage({ category, query = category, pageSize = "10" }: CategoryP
         setArticles(articles);
         setLoading(false);
       });
-  }, [category, query, pageSize]);
+  }, [category, queryParam, pageSize]);
 
   return (
     <div>
