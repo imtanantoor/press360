@@ -19,6 +19,12 @@ function App() {
           Learn React
         </a>
       </header>
+      <main>
+        <h1> Press 360</h1>
+        <p>
+          Press 360 is a platform for creating and sharing 360° videos.
+        </p>
+      </main>
     </div>
   );
 }
