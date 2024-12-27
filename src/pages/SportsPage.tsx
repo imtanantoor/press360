@@ -1,7 +1,8 @@
 import CategoryPage from "../components/CategoryPage";
-
+import { useAppSelector } from "../hooks/reduxHooks";
 function SportsPage() {
-  return <CategoryPage category="sports" />;
+  const { query } = useAppSelector((state) => state.search);
+  return <CategoryPage category="sports" query={query} />;
 }
 
 export default SportsPage;
