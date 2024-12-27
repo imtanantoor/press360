@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { setQuery } from "../../redux/searchSlice";
 import { useAppDispatch } from "../../hooks/reduxHooks";
@@ -11,14 +11,14 @@ function SearchBar() {
   const [input, setInput] = useState(queryParam || "");
   const dispatch = useAppDispatch();
 
-  const debouncedSearch = useDebounce(() => dispatch(setQuery(input)), 500);
+  const debouncedSearch = useDebounce((input: string) => dispatch(setQuery(input)), 500);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setInput(e.target.value);
     searchParams.set("q", e.target.value);
     location.search = searchParams.toString();
     window.history.replaceState(null, "", location.pathname + "?" + searchParams.toString());
-    debouncedSearch();
+    debouncedSearch(e.target.value);
   }
 
   return (

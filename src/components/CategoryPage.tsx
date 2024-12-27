@@ -15,6 +15,8 @@ function CategoryPage({ category, query = '', pageSize = "10" }: CategoryPagePro
   const [articles, setArticles] = useState<ArticleItem[]>([]);
   const [loading, setLoading] = useState(true);
   const articlesWithImage = articles.filter((article) => article.image);
+  const { query: keyword } = useAppSelector((state) => state.search);
+
   const articlesFromGuardian = articles.filter(
     (article) => article.source === "The Guardian"
   );
@@ -23,7 +25,7 @@ function CategoryPage({ category, query = '', pageSize = "10" }: CategoryPagePro
     const articleService = ArticleService.getInstance();
     articleService
       .searchArticles({
-        q: query,
+        q: keyword,
         category: category,
         section: category,
         page: "1",
@@ -33,7 +35,7 @@ function CategoryPage({ category, query = '', pageSize = "10" }: CategoryPagePro
         setArticles(articles);
         setLoading(false);
       });
-  }, [category, query, pageSize]);
+  }, [category, keyword, pageSize]);
 
   return (
     <div>
