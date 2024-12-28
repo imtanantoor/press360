@@ -36,7 +36,13 @@ const loadStateFromStorage = (): UserState => {
     if (serializedState === null) {
       return defaultInitialState;
     }
-    return JSON.parse(serializedState);
+    // Parse the stored state and merge with default initial state to ensure myFeed is empty
+    const parsedState = JSON.parse(serializedState);
+    return {
+      ...parsedState,
+      myFeed: [],
+      myFeedLoading: false
+    };
   } catch (err) {
     return defaultInitialState;
   }
@@ -59,11 +65,13 @@ const userSlice = createSlice({
   reducers: {
     setIsLoggedIn: (state, action) => {
       state.isLoggedIn = action.payload;
-      localStorage.setItem("userState", JSON.stringify(state));
+      const stateForStorage = { ...state, myFeed: [] };
+      localStorage.setItem("userState", JSON.stringify(stateForStorage));
     },
     setUser: (state, action) => {
       state.user = action.payload;
-      localStorage.setItem("userState", JSON.stringify(state));
+      const stateForStorage = { ...state, myFeed: [] };
+      localStorage.setItem("userState", JSON.stringify(stateForStorage));
     },
     updateUserPreference: (
       state,
@@ -72,7 +80,8 @@ const userSlice = createSlice({
       }
     ) => {
       state.preferences = { ...state.preferences, ...action.payload };
-      localStorage.setItem("userState", JSON.stringify(state));
+      const stateForStorage = { ...state, myFeed: [] };
+      localStorage.setItem("userState", JSON.stringify(stateForStorage));
     },
     clearUserPreferences: (state) => {
       state.preferences = {
@@ -80,7 +89,8 @@ const userSlice = createSlice({
         sources: [],
         authors: [],
       };
-      localStorage.setItem("userState", JSON.stringify(state));
+      const stateForStorage = { ...state, myFeed: [] };
+      localStorage.setItem("userState", JSON.stringify(stateForStorage));
     },
     logout: (state) => {
       state.isLoggedIn = false;
@@ -98,7 +108,6 @@ const userSlice = createSlice({
     builder.addCase(fetchMyFeed.fulfilled, (state, action) => {
       state.myFeed = action.payload;
       state.myFeedLoading = false;
-      localStorage.setItem("userState", JSON.stringify(state));
     });
     builder.addCase(fetchMyFeed.pending, (state, action) => {
       state.myFeedLoading = true;
