@@ -10,6 +10,7 @@ function Filters() {
   const [isOpen1, setIsOpen1] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const filters = useAppSelector((state: RootState) => state.search.filters);
+
   const dispatch = useAppDispatch();
   const debouncedSearch = useDebounce(
     (searchParams: Record<string, string>) =>

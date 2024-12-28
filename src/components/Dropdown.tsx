@@ -1,4 +1,5 @@
 import DropdownProps from "../models/DropdownProps.model";
+import dropDownArrow from "../../src/assets/icons/dropdownArrow.png";
 
 function Dropdown({
   options,
@@ -29,6 +30,11 @@ function Dropdown({
           ))}
         </ul>
       )}
+      <img
+        src={dropDownArrow}
+        alt="dropdown arrow"
+        className={isOpen ? "dropdown-arrow-open" : "dropdown-arrow-closed"}
+      />
     </button>
   );
 }

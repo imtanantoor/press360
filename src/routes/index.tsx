@@ -6,7 +6,7 @@ import SportsPage from "../pages/SportsPage";
 import EntertainmentPage from "../pages/EntertainmentPage";
 import SciencePage from "../pages/SciencePage";
 import SearchPage from "../pages/SearchPage";
-
+  
 function AppRoutes() {
   return (
     <Routes>

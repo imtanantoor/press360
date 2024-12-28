@@ -27,9 +27,9 @@ const userSlice = createSlice({
     },
     updateUserPreference: (
       state,
-      action: { payload: { key: string; value: string } }
+      action: { payload: Record<string, string> }
     ) => {
-      state.preferences[action.payload.key] = action.payload.value;
+      state.preferences = { ...state.preferences, ...action.payload };
     },
     clearUserPreferences: (state) => {
       state.preferences = {};
