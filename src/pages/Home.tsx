@@ -6,7 +6,6 @@ import { useEffect } from "react";
 
 function HomePage() {
   const { articles, loading } = useAppSelector((state) => state.search);
-  const articlesWithImage = articles.filter((article) => article.image);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -18,7 +17,7 @@ function HomePage() {
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <ArticleList articles={articlesWithImage} title="Latest Articles" />
+        <ArticleList articles={articles} title="Latest Articles" />
       )}
     </NewsLayout>
   );
