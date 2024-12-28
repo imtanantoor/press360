@@ -1,5 +1,6 @@
 @use './styles/_article.scss' as article;
 @use './styles/_header.scss' as header;
+@use './styles/_searchAndFilter.scss' as searchAndFilter;
 @import './styles/variables.scss';
 
 *{
@@ -26,4 +27,19 @@ body{
     max-width: 1200px;
     margin: 0 auto;
     background-color: $primary-color;
+}
+
+footer{
+    text-align: center;
+    padding: 20px 0;
+    &::before{
+        background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(226, 226, 226);
+    border-top: 2px solid rgb(226, 226, 226);
+    content: "";
+    display: block;
+    height: 1px;
+    margin-top: 0px;
+    }
+
 }
