@@ -21,6 +21,10 @@ header{
 .header-contentContainer nav{
     display: flex;
     gap: 20px;
+    @media (max-width: 768px) {
+        gap: 5px;
+        font-size: 14px;
+    }
 }
 
 .search-bar{
@@ -32,5 +36,8 @@ header{
     &::placeholder{
         color: $border-color;
     }
+   @media (max-width: 768px) {
+    width: 100px;
+   }
 }
 

@@ -27,6 +27,9 @@ body{
     max-width: 1200px;
     margin: 0 auto;
     background-color: $primary-color;
+    @media (max-width: 768px) {
+        padding: 0 10px;
+    }
 }
 
 footer{

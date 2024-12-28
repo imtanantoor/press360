@@ -5,8 +5,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: $neutral-background;
+    // background-color: $neutral-background;
     padding: 20px 0;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+
+        gap: 10px;
+    }
 }
 
 .filters{
@@ -16,6 +22,10 @@
     gap: 10px;
     width: 45%;
 
+    @media (max-width: 768px) {
+        width: 100%;
+    }
+
 }
 .search-input{
     width: 50%;
@@ -23,10 +33,14 @@
     border-top: none;
     border-left: none;
     border-right: none;
-    background-color: $neutral-background;
+    // background-color: $neutral-background;
     font-weight: 600;
     border-bottom: 1px solid #ccc;
     font-size: 1.5rem;
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
 
     &:focus{
         outline: none;
