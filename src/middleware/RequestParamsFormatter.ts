@@ -1,20 +1,30 @@
+import CheckListItem from "../models/CheckListItem.model";
+
 class RequestParamsFormatter {
   static formatRequestSearchParams(
     sourceName: string,
-    params: Record<string, string>
-  ): Record<string, string> {
+    params: Record<string, string | CheckListItem[]>
+  ): Record<string, string | string[]> {
+    
+    let searchParams: Record<string, string | string[]> = {};
 
-    let searchParams = {
-      ...params,
-    };
+    Object.entries(params).forEach(([key, value]) => {
+      if (typeof value === "string") {
+        searchParams[key] = value;
+      }
+
+      if (Array.isArray(value)) {
+        searchParams[key] = value.map((item) => item.id.toString());
+      }
+    });
 
     if (sourceName === "News Data IO") {
       delete searchParams.page;
       delete searchParams.pageSize;
       delete searchParams.section;
 
-      searchParams.from_date = params.date;
-      searchParams.to_date = params.date;
+      searchParams.from_date = params.date as string;
+      searchParams.to_date = params.date as string;
 
       delete searchParams.date;
 
@@ -24,16 +34,16 @@ class RequestParamsFormatter {
     if (sourceName === "NewsAPI") {
       delete searchParams.category;
       delete searchParams.country;
-      searchParams.from = params.date;
-      searchParams.to = params.date;
+      searchParams.from = params.date as string;
+      searchParams.to = params.date as string;
 
       delete searchParams.date;
 
       return searchParams;
     }
 
-    searchParams['from-date'] = params.date;
-    searchParams['to-date'] = params.date;
+    searchParams["from-date"] = params.date as string;
+    searchParams["to-date"] = params.date as string;
 
     delete searchParams.date;
 

@@ -1,6 +1,7 @@
 import RequestParamsFormatter from "../middleware/RequestParamsFormatter";
 import ResponseFormatter from "../middleware/ResponseFormatter";
 import ArticleItem from "../models/ArticleItem";
+import CheckListItem from "../models/CheckListItem.model";
 import ContentSource from "../models/ContentSource";
 import ApiContentService from "./APIContentService";
 
@@ -114,7 +115,7 @@ class ArticleService {
   }
 
   async searchArticles(
-    searchParams: Record<string, string>
+    searchParams: Record<string, string | CheckListItem[]>
   ): Promise<ArticleItem[]> {
     const aggregatedSearchContent: ArticleItem[] = [];
 

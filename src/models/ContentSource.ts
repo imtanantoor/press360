@@ -1,4 +1,5 @@
 import ArticleItem from "./ArticleItem";
+import CheckListItem from "./CheckListItem.model";
 
 abstract class ContentSource {
   constructor(
@@ -8,7 +9,7 @@ abstract class ContentSource {
   ) {}
 
   abstract getAllContent(): Promise<ArticleItem[]>;
-  abstract searchContent(searchParams: Record<string, string>): Promise<ArticleItem[]>;
+  abstract searchContent(searchParams: Record<string, string | string[]>): Promise<ArticleItem[]>;
 }
 
 export default ContentSource;
