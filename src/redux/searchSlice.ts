@@ -10,7 +10,11 @@ interface SearchState {
 
 const initialState: SearchState = {
   query: "",
-  filters: {},
+  filters: {
+    date: "",
+    category: "",
+    source: "",
+  },
   articles: [],
   loading: false,
 };
@@ -31,6 +35,9 @@ const searchSlice = createSlice({
     setQuery: (state, action) => {
       state.query = action.payload;
     },
+    setFilters: (state, action) => {
+      state.filters = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchSearchResults.fulfilled, (state, action) => {
@@ -46,6 +53,6 @@ const searchSlice = createSlice({
   },
 });
 
-export const { setQuery } = searchSlice.actions;
+export const { setQuery, setFilters } = searchSlice.actions;
 
 export default searchSlice.reducer;

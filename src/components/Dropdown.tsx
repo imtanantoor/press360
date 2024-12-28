@@ -6,15 +6,12 @@ function Dropdown({
   isOpen,
   setIsOpen,
   selected = "Please select",
-  setSelected,
 }: DropdownProps & {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   selected: string;
-  setSelected: (selected: string) => void;
 }) {
   const handleSelect = (option: string) => {
-    setSelected(option);
     setIsOpen(false);
     onSelect(option);
   };
