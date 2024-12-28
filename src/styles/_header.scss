@@ -54,6 +54,12 @@ header{
     justify-content: space-between;
     align-items: center;
     margin: 10px 0;
+    width: 100%;
+
+    @media (max-width: 768px) {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
 }
 
 .header-contentContainer nav{
@@ -68,11 +74,17 @@ header{
     @media (max-width: 768px) {
         gap: 5px;
         font-size: 14px;
-        margin-bottom: 10px;
+        margin-top: 10px;
+        justify-content: space-between;
+        width: 100%;
     }
 }
 .search-bar-container{
     border-bottom: 1px solid $border-color;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 }
 
 .search-bar{
@@ -87,7 +99,7 @@ header{
     }
 
    @media (max-width: 768px) {
-    width: 90px;
+    width: calc(100% - 20px);
     border: none;
     padding: 0;
     margin-top: 2px;
