@@ -1,7 +1,7 @@
 import { RootState } from "../../redux/store";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { useState } from "react";
-import { setIsLoggedIn, setUser } from "../../redux/userSlice";
+import { setIsLoggedIn, setUser, logout } from "../../redux/userSlice";
 import preferences from "../../assets/icons/preferencesIcon.png";
 import { openPreferencesPopup } from "../../redux/preferencesPopupSlice";
 
@@ -20,6 +20,7 @@ const TopSectionRight = () => {
   function handleLogout() {
     dispatch(setIsLoggedIn(false));
     dispatch(setUser(null));
+    dispatch(logout());
   }
 
   if (isLoggedIn) {
