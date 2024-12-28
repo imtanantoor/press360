@@ -40,7 +40,7 @@ class ResponseFormatter {
         description: article.description ?? '',
         image: article.image_url ?? '',
         date: article.pubDate,
-        source: 'News Data IO',
+        source: article.source_name,
         content: article.content ?? '',
       };
       return articleData;

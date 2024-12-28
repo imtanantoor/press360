@@ -1,3 +1,4 @@
+import RequestParamsFormatter from "../middleware/RequestParamsFormatter";
 import ResponseFormatter from "../middleware/ResponseFormatter";
 import ArticleItem from "../models/ArticleItem";
 import ContentSource from "../models/ContentSource";
@@ -118,7 +119,12 @@ class ArticleService {
     const aggregatedSearchContent: ArticleItem[] = [];
 
     for (const source of this.searchSources) {
-      const articles = await source.searchContent(searchParams);
+      const articles = await source.searchContent(
+        RequestParamsFormatter.formatRequestSearchParams(
+          source.name,
+          searchParams
+        )
+      );
       aggregatedSearchContent.push(...articles);
     }
 

@@ -23,9 +23,10 @@ function CategoryPage({
     const articleService = ArticleService.getInstance();
     articleService
       .searchArticles({
-        q: filters.q,
+        q: category,
         category: category,
         section: category,
+        country: "us",
         page: "1",
         pageSize: pageSize,
       })
