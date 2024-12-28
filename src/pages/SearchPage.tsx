@@ -12,7 +12,7 @@ function SearchPage() {
   const keyword = searchParams.get("keyword");
   const [searchValue, setSearchValue] = useState(keyword || "");
   const location = useLocation();
-  const { articles, loading, filters } = useAppSelector(
+  const { searchResults, searching, filters } = useAppSelector(
     (state) => state.search
   );
   const dispatch = useAppDispatch();
@@ -47,10 +47,10 @@ function SearchPage() {
         inputChange={handleInputChange}
         placeholder="Search Press 360"
       />
-      {loading ? (
+      {searching ? (
         <p>Fetching results...</p>
       ) : (
-        <ArticleList articles={articles} title="" />
+        <ArticleList articles={searchResults} title="" />
       )}
     </NewsLayout>
   );
