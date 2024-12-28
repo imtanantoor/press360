@@ -22,7 +22,7 @@ class ArticleService {
           "https://newsdata.io/api/1/latest",
           ResponseFormatter.formatNewsDataIOAPIResponse,
           {
-            apikey: "pub_6356109c2b693d9ea3ec88b6b1300162c0c7c",
+            apikey: process.env.REACT_APP_NEWS_DATA_IO_API_KEY ?? "",
             country: "us",
           }
         )
@@ -33,7 +33,7 @@ class ArticleService {
           "https://newsapi.org/v2/top-headlines",
           ResponseFormatter.formatNewsAPIResponse,
           {
-            apiKey: "c290bf206d824a7a92fdc5c2c3037342",
+            apiKey: process.env.REACT_APP_NEWS_API_KEY ?? "",
             country: "us",
           }
         )
@@ -44,7 +44,7 @@ class ArticleService {
           "https://content.guardianapis.com/search",
           ResponseFormatter.formatGuardianAPIResponse,
           {
-            "api-key": "6ad89547-81bc-4318-8dc7-0eecb1f5c274",
+            "api-key": process.env.REACT_APP_GUARDIAN_API_KEY ?? "",
           }
         )
       );
@@ -57,7 +57,7 @@ class ArticleService {
           "https://newsdata.io/api/1/latest",
           ResponseFormatter.formatNewsDataIOAPIResponse,
           {
-            apikey: "pub_6356109c2b693d9ea3ec88b6b1300162c0c7c",
+            apikey: process.env.REACT_APP_NEWS_DATA_IO_API_KEY ?? "",
             country: "us",
           }
         )
@@ -68,7 +68,7 @@ class ArticleService {
           "https://newsapi.org/v2/everything",
           ResponseFormatter.formatNewsAPIResponse,
           {
-            apiKey: "c290bf206d824a7a92fdc5c2c3037342",
+            apiKey: process.env.REACT_APP_NEWS_API_KEY ?? "",
           }
         )
       );
@@ -78,7 +78,7 @@ class ArticleService {
           "https://content.guardianapis.com/search",
           ResponseFormatter.formatGuardianAPIResponse,
           {
-            "api-key": "6ad89547-81bc-4318-8dc7-0eecb1f5c274",
+            "api-key": process.env.REACT_APP_GUARDIAN_API_KEY ?? "",
           }
         )
       );
