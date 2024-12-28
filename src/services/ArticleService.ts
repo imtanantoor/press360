@@ -6,6 +6,7 @@ import ApiContentService from "./APIContentService";
 class ArticleService {
   private static instance: ArticleService;
   private sources: ContentSource[] = [];
+  private searchSources: ContentSource[] = [];
   private readonly aggregatedContent: ArticleItem[] = [];
 
   constructor() {
@@ -47,6 +48,40 @@ class ArticleService {
         )
       );
     }
+
+    if (this.searchSources.length === 0) {
+      this.addSearchSource(
+        new ApiContentService(
+          "News Data IO",
+          "https://newsdata.io/api/1/latest",
+          ResponseFormatter.formatNewsDataIOAPIResponse,
+          {
+            apikey: "pub_6356109c2b693d9ea3ec88b6b1300162c0c7c",
+            country: "us",
+          }
+        )
+      );
+      this.addSearchSource(
+        new ApiContentService(
+          "NewsAPI",
+          "https://newsapi.org/v2/everything",
+          ResponseFormatter.formatNewsAPIResponse,
+          {
+            apiKey: "c290bf206d824a7a92fdc5c2c3037342",
+          }
+        )
+      );
+      this.addSearchSource(
+        new ApiContentService(
+          "The Guardian",
+          "https://content.guardianapis.com/search",
+          ResponseFormatter.formatGuardianAPIResponse,
+          {
+            "api-key": "6ad89547-81bc-4318-8dc7-0eecb1f5c274",
+          }
+        )
+      );
+    }
   }
 
   public static getInstance(): ArticleService {
@@ -58,6 +93,10 @@ class ArticleService {
 
   addSource(source: ContentSource) {
     this.sources.push(source);
+  }
+
+  addSearchSource(source: ContentSource) {
+    this.searchSources.push(source);
   }
 
   removeSource(source: ContentSource) {
@@ -78,7 +117,7 @@ class ArticleService {
   ): Promise<ArticleItem[]> {
     const aggregatedSearchContent: ArticleItem[] = [];
 
-    for (const source of this.sources) {
+    for (const source of this.searchSources) {
       const articles = await source.searchContent(searchParams);
       aggregatedSearchContent.push(...articles);
     }
