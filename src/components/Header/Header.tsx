@@ -35,6 +35,13 @@ const Header: React.FC = () => {
           >
             Science
           </NavLink>
+          <NavLink
+            to="/my-feed"
+            aria-label="Press My Feed"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            My Feed
+          </NavLink>
         </nav>
         <SearchBar />
       </div>

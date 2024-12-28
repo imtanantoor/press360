@@ -7,6 +7,8 @@ interface SearchState {
   searchResults: ArticleItem[];
   loading: boolean;
   searching: boolean;
+  myFeed: ArticleItem[];
+  myFeedLoading: boolean;
 }
 
 const initialState: SearchState = {
@@ -20,6 +22,8 @@ const initialState: SearchState = {
   articles: [],
   loading: false,
   searching: false,
+  myFeed: [],
+  myFeedLoading: false,
 };
 
 export const fetchArticles = createAsyncThunk(
@@ -49,6 +53,7 @@ const searchSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // Articles
     builder.addCase(fetchArticles.fulfilled, (state, action) => {
       state.articles = action.payload;
       state.loading = false;
@@ -60,6 +65,7 @@ const searchSlice = createSlice({
       state.loading = false;
     });
 
+    // Search Results
     builder.addCase(fetchSearchResults.fulfilled, (state, action) => {
       state.searchResults = action.payload;
       state.searching = false;

@@ -6,6 +6,7 @@ import SportsPage from "../pages/SportsPage";
 import EntertainmentPage from "../pages/EntertainmentPage";
 import SciencePage from "../pages/SciencePage";
 import SearchPage from "../pages/SearchPage";
+import MyFeedPage from "../pages/MyFeedPage";
   
 function AppRoutes() {
   return (
@@ -17,6 +18,7 @@ function AppRoutes() {
         <Route path="/entertainment" element={<EntertainmentPage />} />
         <Route path="/science" element={<SciencePage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/my-feed" element={<MyFeedPage />} />
       </Route>
     </Routes>
   );
