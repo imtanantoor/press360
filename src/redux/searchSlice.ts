@@ -11,10 +11,10 @@ interface SearchState {
 
 const initialState: SearchState = {
   filters: {
+    q: "",
     date: "",
     category: "",
     source: "",
-    q: "",
   },
   searchResults: [],
   articles: [],
