@@ -27,12 +27,14 @@ header{
         margin-bottom: 10px;
     }
 }
-
+.search-bar-container{
+    border-bottom: 1px solid $border-color;
+}
 .search-bar{
     width: 200px;
     height: 30px;
     border: none;
-    border-bottom: 1px solid $border-color;
+    
     outline: none;
     &::placeholder{
         color: $border-color;
@@ -46,5 +48,10 @@ header{
     margin-top: 2px;
     margin-bottom: 10px;
    }
+}
+
+.search-icon{
+    width: 15px;
+    height: 15px;
 }
 
