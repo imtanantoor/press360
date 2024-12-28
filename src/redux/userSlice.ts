@@ -1,40 +1,47 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+interface User {
+  name: string;
+}
 interface UserState {
- preferences: {
-  filters: Record<string, string>;
- };
+  user: User | null;
+  isLoggedIn: boolean;
+  preferences: Record<string, string>;
 }
 
 const initialState: UserState = {
- preferences: {
-  filters: {},
- },
+  user: null,
+  isLoggedIn: false,
+  preferences: {},
 };
 
 const userSlice = createSlice({
- name: "user",
- initialState,
- reducers: {
-  setFilterPreferences: (state, action) => {
-   state.preferences.filters = action.payload;
+  name: "user",
+  initialState,
+  reducers: {
+    setIsLoggedIn: (state, action) => {
+      state.isLoggedIn = action.payload;
+    },
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
+    updateUserPreference: (
+      state,
+      action: { payload: { key: string; value: string } }
+    ) => {
+      state.preferences[action.payload.key] = action.payload.value;
+    },
+    clearUserPreferences: (state) => {
+      state.preferences = {};
+    },
   },
-  updateFilterPreference: (
-   state,
-   action: { payload: { key: string; value: string } }
-  ) => {
-   state.preferences.filters[action.payload.key] = action.payload.value;
-  },
-  clearFilterPreferences: (state) => {
-   state.preferences.filters = {};
-  },
- },
 });
 
 export const {
- setFilterPreferences,
- updateFilterPreference,
- clearFilterPreferences,
+  setIsLoggedIn,
+  setUser,
+  updateUserPreference,
+  clearUserPreferences,
 } = userSlice.actions;
 
 export default userSlice.reducer;
