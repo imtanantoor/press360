@@ -21,6 +21,12 @@ header{
 .header-contentContainer nav{
     display: flex;
     gap: 20px;
+
+    .active{
+        color: $secondary-color;
+        font-weight: 500;
+        text-decoration: underline;
+    }
     @media (max-width: 768px) {
         gap: 5px;
         font-size: 14px;
