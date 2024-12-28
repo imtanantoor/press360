@@ -1,6 +1,6 @@
-@use './components/Article/_article.scss' as article;
-@use './components/Header/_header.scss' as header;
-@import './variables.scss';
+@use './styles/_article.scss' as article;
+@use './styles/_header.scss' as header;
+@import './styles/variables.scss';
 
 *{
     margin: 0;
@@ -8,6 +8,22 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+    &:visited{
+        color: inherit;
+    }
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
 body{
-    background-color: $neutral-background;
+    background-color: $primary-color;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: $primary-color;
 }

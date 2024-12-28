@@ -1,0 +1,36 @@
+@import "./variables.scss";
+
+header{
+    background-color: $primary-color;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-style: double;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.header-contentContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-contentContainer nav{
+    display: flex;
+    gap: 20px;
+}
+
+.search-bar{
+    width: 200px;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid $border-color;
+    outline: none;
+    &::placeholder{
+        color: $border-color;
+    }
+}
+

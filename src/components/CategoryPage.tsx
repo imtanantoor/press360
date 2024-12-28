@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import ArticleItem from "../models/ArticleItem";
 import ArticleService from "../services/ArticleService";
 import ArticleList from "./Article/ArticleList";
-import HeroArticle from "./Article/HeroArticle";
 import { useAppSelector } from "../hooks/reduxHooks";
+import NewsLayout from "../layout/NewsLayout";
 
 interface CategoryPageProps {
   readonly category: string;
@@ -11,15 +11,15 @@ interface CategoryPageProps {
   readonly pageSize?: string;
 }
 
-function CategoryPage({ category, query = '', pageSize = "10" }: CategoryPageProps) {
+function CategoryPage({
+  category,
+  query = "",
+  pageSize = "10",
+}: CategoryPageProps) {
   const [articles, setArticles] = useState<ArticleItem[]>([]);
   const [loading, setLoading] = useState(true);
   const articlesWithImage = articles.filter((article) => article.image);
   const { query: keyword } = useAppSelector((state) => state.search);
-
-  const articlesFromGuardian = articles.filter(
-    (article) => article.source === "The Guardian"
-  );
 
   useEffect(() => {
     const articleService = ArticleService.getInstance();
@@ -38,18 +38,17 @@ function CategoryPage({ category, query = '', pageSize = "10" }: CategoryPagePro
   }, [category, keyword, pageSize]);
 
   return (
-    <div>
+    <NewsLayout>
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <>
-          <HeroArticle article={articlesWithImage[0]} />
-          <ArticleList articles={articlesWithImage} title={`Latest in ${category}`} />
-          <ArticleList articles={articlesFromGuardian} title="The Guardian" />
-        </>
+        <ArticleList
+          articles={articlesWithImage}
+          title={`Latest in ${category}`}
+        />
       )}
-    </div>
+    </NewsLayout>
   );
 }
 
-export default CategoryPage; 
+export default CategoryPage;

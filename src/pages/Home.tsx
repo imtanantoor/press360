@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ArticleList from "../components/Article/ArticleList";
 import ArticleItem from "../models/ArticleItem";
 import ArticleService from "../services/ArticleService";
-import HeroArticle from "../components/Article/HeroArticle";
+import NewsLayout from "../layout/NewsLayout";
 
 function HomePage() {
   const [articles, setArticles] = useState<ArticleItem[]>([]);
@@ -12,20 +12,19 @@ function HomePage() {
   useEffect(() => {
     const articleService = ArticleService.getInstance();
     articleService.getArticles().then((articles) => {
-      setArticles(articles)
-      setLoading(false)
+      setArticles(articles);
+      setLoading(false);
     });
   }, []);
 
   return (
-    <div>
-      {loading ? <div>Loading...</div> : (
-        <>
-          <HeroArticle article={articlesWithImage[0]} />
-          <ArticleList articles={articlesWithImage} title="Latest Articles" />
-        </>
+    <NewsLayout>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <ArticleList articles={articlesWithImage} title="Latest Articles" />
       )}
-    </div>
+    </NewsLayout>
   );
 }
 

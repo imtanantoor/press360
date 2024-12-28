@@ -1,12 +1,13 @@
 import { Outlet } from "react-router";
 import Header from "../components/Header/Header";
+import { Fragment } from "react/jsx-runtime";
 
 function MainLayout() {
   return (
-    <div>
+    <Fragment>
       <Header />
       <Outlet />
-    </div>
+    </Fragment>
   );
 }
 

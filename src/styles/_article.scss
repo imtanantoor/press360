@@ -1,0 +1,34 @@
+@import "./variables.scss";
+
+.article-list-title{
+    margin: 1rem 0;
+}
+
+.article-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 0;
+    border-bottom: 1px solid #000;
+
+    &:first-child{
+        border-top: 1px solid #000;
+    }
+    
+    
+    .article-card-content{
+        width: 50%;
+    }
+
+    figure{
+        width: 50%;
+        height: 20vh;
+    }
+
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
