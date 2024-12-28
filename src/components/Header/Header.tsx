@@ -4,9 +4,12 @@ import SearchBar from "./SearchBar";
 const Header: React.FC = () => {
   return (
     <header className="container">
-      <NavLink to="/">
-        <h1 aria-label="Press 360 Home">Press 360</h1>
-      </NavLink>
+      <div className="header-topSection">
+        <NavLink to="/">
+          <h1 aria-label="Press 360 Home">Press 360</h1>
+        </NavLink>
+        <button>Login</button>
+      </div>
       <div className=" header-contentContainer">
         <nav>
           <NavLink

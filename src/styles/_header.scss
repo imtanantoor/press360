@@ -12,6 +12,20 @@ header{
     border-right: none;
 }
 
+.header-topSection{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button{
+        background-color: $secondary-color;
+        color: $primary-color;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+}
+
 .header-contentContainer{
     display: flex;
     justify-content: space-between;
