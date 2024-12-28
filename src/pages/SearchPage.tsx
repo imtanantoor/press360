@@ -4,7 +4,7 @@ import SearchAndFilters from "../components/Search/SearchAndFilters";
 import { useEffect, useState } from "react";
 import ArticleList from "../components/Article/ArticleList";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
-import { fetchSearchResults } from "../redux/searchSlice";
+import { fetchSearchResults, setFilters } from "../redux/searchSlice";
 import useDebounce from "../hooks/debounce";
 
 function SearchPage() {
@@ -12,7 +12,9 @@ function SearchPage() {
   const keyword = searchParams.get("keyword");
   const [searchValue, setSearchValue] = useState(keyword || "");
   const location = useLocation();
-  const { articles, loading } = useAppSelector((state) => state.search);
+  const { articles, loading, filters } = useAppSelector(
+    (state) => state.search
+  );
   const dispatch = useAppDispatch();
   const debouncedSearch = useDebounce(
     (searchParams: Record<string, string>) =>
@@ -29,13 +31,14 @@ function SearchPage() {
       "",
       location.pathname + "?" + searchParams.toString()
     );
-    debouncedSearch({ q: e.target.value });
+
+    dispatch(setFilters({ ...filters, q: e.target.value }));
+    debouncedSearch({ ...filters, q: e.target.value });
   }
 
   useEffect(() => {
-    dispatch(fetchSearchResults({ q: searchValue }));
+    dispatch(fetchSearchResults({ ...filters }));
   }, []);
-
 
   return (
     <NewsLayout>
@@ -47,7 +50,7 @@ function SearchPage() {
       {loading ? (
         <p>Fetching results...</p>
       ) : (
-        <ArticleList articles={articles} title="Search Results" />
+        <ArticleList articles={articles} title="" />
       )}
     </NewsLayout>
   );

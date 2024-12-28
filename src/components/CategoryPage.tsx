@@ -7,25 +7,23 @@ import NewsLayout from "../layout/NewsLayout";
 
 interface CategoryPageProps {
   readonly category: string;
-  readonly query?: string;
   readonly pageSize?: string;
 }
 
 function CategoryPage({
   category,
-  query = "",
   pageSize = "10",
 }: CategoryPageProps) {
   const [articles, setArticles] = useState<ArticleItem[]>([]);
   const [loading, setLoading] = useState(true);
   const articlesWithImage = articles.filter((article) => article.image);
-  const { query: keyword } = useAppSelector((state) => state.search);
+  const { filters } = useAppSelector((state) => state.search);
 
   useEffect(() => {
     const articleService = ArticleService.getInstance();
     articleService
       .searchArticles({
-        q: keyword,
+        q: filters.q,
         category: category,
         section: category,
         page: "1",
@@ -35,7 +33,7 @@ function CategoryPage({
         setArticles(articles);
         setLoading(false);
       });
-  }, [category, keyword, pageSize]);
+  }, [category, filters.q, pageSize]);
 
   return (
     <NewsLayout>

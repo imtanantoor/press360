@@ -1,20 +1,16 @@
-import { useEffect, useState } from "react";
 import ArticleList from "../components/Article/ArticleList";
-import ArticleItem from "../models/ArticleItem";
-import ArticleService from "../services/ArticleService";
 import NewsLayout from "../layout/NewsLayout";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
+import { fetchArticles } from "../redux/searchSlice";
+import { useEffect } from "react";
 
 function HomePage() {
-  const [articles, setArticles] = useState<ArticleItem[]>([]);
+  const { articles, loading } = useAppSelector((state) => state.search);
   const articlesWithImage = articles.filter((article) => article.image);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const articleService = ArticleService.getInstance();
-    articleService.getArticles().then((articles) => {
-      setArticles(articles);
-      setLoading(false);
-    });
+    dispatch(fetchArticles());
   }, []);
 
   return (

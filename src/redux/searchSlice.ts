@@ -2,22 +2,34 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import ArticleService from "../services/ArticleService";
 import ArticleItem from "../models/ArticleItem";
 interface SearchState {
-  query: string;
   filters: Record<string, string>;
   articles: ArticleItem[];
+  searchResults: ArticleItem[];
   loading: boolean;
+  searching: boolean;
 }
 
 const initialState: SearchState = {
-  query: "",
   filters: {
     date: "",
     category: "",
     source: "",
+    q: "",
   },
+  searchResults: [],
   articles: [],
   loading: false,
+  searching: false,
 };
+
+export const fetchArticles = createAsyncThunk(
+  "search/fetchArticles",
+  async () => {
+    const articleService = ArticleService.getInstance();
+    const articles = await articleService.getArticles();
+    return articles;
+  }
+);
 
 export const fetchSearchResults = createAsyncThunk(
   "search/fetchSearchResults",
@@ -32,27 +44,35 @@ const searchSlice = createSlice({
   name: "search",
   initialState,
   reducers: {
-    setQuery: (state, action) => {
-      state.query = action.payload;
-    },
     setFilters: (state, action) => {
       state.filters = action.payload;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchSearchResults.fulfilled, (state, action) => {
+    builder.addCase(fetchArticles.fulfilled, (state, action) => {
       state.articles = action.payload;
       state.loading = false;
     });
-    builder.addCase(fetchSearchResults.pending, (state, action) => {
+    builder.addCase(fetchArticles.pending, (state, action) => {
       state.loading = true;
     });
-    builder.addCase(fetchSearchResults.rejected, (state, action) => {
+    builder.addCase(fetchArticles.rejected, (state, action) => {
       state.loading = false;
+    });
+
+    builder.addCase(fetchSearchResults.fulfilled, (state, action) => {
+      state.searchResults = action.payload;
+      state.searching = false;
+    });
+    builder.addCase(fetchSearchResults.pending, (state, action) => {
+      state.searching = true;
+    });
+    builder.addCase(fetchSearchResults.rejected, (state, action) => {
+      state.searching = false;
     });
   },
 });
 
-export const { setQuery, setFilters } = searchSlice.actions;
+export const { setFilters } = searchSlice.actions;
 
 export default searchSlice.reducer;
