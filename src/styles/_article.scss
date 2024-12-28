@@ -32,4 +32,13 @@
         height: 100%;
         object-fit: cover;
     }
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        
+        .article-card-content,
+        figure {
+            width: 100%;
+        }
+    }
+
 }
