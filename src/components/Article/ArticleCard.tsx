@@ -1,4 +1,5 @@
 import ArticleItem from "../../models/ArticleItem";
+import CustomImage from "../CustomImage";
 
 function ArticleCard({ article }: { article: ArticleItem }) {
   return (
@@ -17,7 +18,7 @@ function ArticleCard({ article }: { article: ArticleItem }) {
         </p>
       </div>
       <figure>
-        <img alt={article.title + "image"} src={article.image} />
+        <CustomImage image={article.image} alt={article.title + "image"} />
       </figure>
     </div>
   );
