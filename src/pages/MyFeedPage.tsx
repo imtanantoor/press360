@@ -34,7 +34,9 @@ function MyFeedPage() {
   return (
     <NewsLayout>
       {myFeedLoading ? (
-        <p>Fetching my feed...</p>
+        <div style={{ padding: 20 }}>
+          <h3>Loading...</h3>
+        </div>
       ) : (
         <ArticleList articles={myFeed} title="My Feed" />
       )}

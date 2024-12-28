@@ -10,10 +10,7 @@ interface CategoryPageProps {
   readonly pageSize?: string;
 }
 
-function CategoryPage({
-  category,
-  pageSize = "10",
-}: CategoryPageProps) {
+function CategoryPage({ category, pageSize = "10" }: CategoryPageProps) {
   const [articles, setArticles] = useState<ArticleItem[]>([]);
   const [loading, setLoading] = useState(true);
   const articlesWithImage = articles.filter((article) => article.image);
@@ -39,12 +36,11 @@ function CategoryPage({
   return (
     <NewsLayout>
       {loading ? (
-        <div>Loading...</div>
+        <div style={{ padding: 20 }}>
+          <h3>Loading...</h3>
+        </div>
       ) : (
-        <ArticleList
-          articles={articlesWithImage}
-          title={`${category}`}
-        />
+        <ArticleList articles={articlesWithImage} title={`${category}`} />
       )}
     </NewsLayout>
   );

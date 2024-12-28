@@ -8,9 +8,13 @@ interface ArticleListProps {
 
 function ArticleList({ articles, title }: Readonly<ArticleListProps>) {
   if (articles.length === 0) {
-    return <p>No articles found</p>;
+    return (
+      <div style={{padding:20}}>
+        <h3>No articles found</h3>
+      </div>
+    );
   }
-  
+
   return (
     <div className="article-list">
       <h2 className="article-list-title">{title}</h2>
