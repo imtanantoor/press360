@@ -12,8 +12,8 @@ function ArticleList({
     <div className="article-list">
       <h2 className="article-list-title">{title}</h2>
       <div className="article-list-container">
-        {articles.map((article) => (
-          <ArticleCard key={article.id} article={article} />
+        {articles.map((article,index) => (
+          <ArticleCard key={`${article.id}-${index}`} article={article} />
         ))}
       </div>
     </div>

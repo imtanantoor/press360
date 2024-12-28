@@ -5,6 +5,7 @@ interface ArticleItem {
   image: string;
   date: string;
   source: string;
+  content: string;
 }
 
 export default ArticleItem;

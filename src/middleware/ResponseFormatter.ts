@@ -10,6 +10,7 @@ class ResponseFormatter {
         image: article.urlToImage,
         date: article.publishedAt,
         source: article.source.name,
+        content: article.content ?? '',
       };
 
       return articleData;
@@ -25,6 +26,22 @@ class ResponseFormatter {
         image: article.urlToImage ?? '',
         date: article.webPublicationDate,
         source: 'The Guardian',
+        content: article.content ?? '',
+      };
+      return articleData;
+    });
+  }
+
+  static formatNewsDataIOAPIResponse(response: any): ArticleItem[] {
+    return response.results.map((article: any, index: number) => {
+      let articleData: ArticleItem = {
+        id: article?.article_id ?? index,
+        title: article.title,
+        description: article.description ?? '',
+        image: article.image_url ?? '',
+        date: article.pubDate,
+        source: 'News Data IO',
+        content: article.content ?? '',
       };
       return articleData;
     });
