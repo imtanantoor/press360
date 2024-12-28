@@ -66,10 +66,12 @@ class ArticleService {
   searchParams: Record<string, string>
  ): Promise<ArticleItem[]> {
   const aggregatedSearchContent: ArticleItem[] = [];
+
   for (const source of this.sources) {
    const articles = await source.searchContent(searchParams);
    aggregatedSearchContent.push(...articles);
   }
+  
   return aggregatedSearchContent;
  }
 }

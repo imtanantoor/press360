@@ -1,7 +1,16 @@
+@import "./dropdown.scss";
 .search-and-filters{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.filters{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 45%;
+
 }
 .search-input{
     width: 50%;
