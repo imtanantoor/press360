@@ -5,7 +5,9 @@ function NewsLayout({ children }: { children: React.ReactNode }) {
   const isOpen = useAppSelector((state) => state.preferencesPopup.isOpen);
 
   return (
-    <main className="container">
+    <main
+      className="container"
+    >
       {children}
       {isOpen && <PreferencesPopup />}
     </main>

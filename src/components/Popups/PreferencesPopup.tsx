@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { closePreferencesPopup } from "../../redux/preferencesPopupSlice";
 import CheckList from "../CheckList";
@@ -50,6 +50,13 @@ function PreferencesPopup() {
     );
     dispatch(closePreferencesPopup());
   };
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
 
   return (
     <div className="preferences-popup">

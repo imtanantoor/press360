@@ -23,14 +23,14 @@ const TopSectionRight = () => {
     dispatch(logout());
   }
 
+  function openModal() {
+    dispatch(openPreferencesPopup());
+  }
+
   if (isLoggedIn) {
     return (
       <div className="profile-icon-container">
-        <img
-          src={preferences}
-          alt="user"
-          onClick={() => dispatch(openPreferencesPopup())}
-        />
+        <img src={preferences} alt="user" onClick={openModal} />
         <button onClick={handleLogout} className="profile-icon">
           {user?.name[0].toUpperCase()}
         </button>
