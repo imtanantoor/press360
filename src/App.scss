@@ -2,6 +2,8 @@
 @use './styles/_header.scss' as header;
 @use './styles/_searchAndFilter.scss' as searchAndFilter;
 @use './styles/_popups.scss' as popups;
+@use './styles/_checklist.scss' as checklist;
+
 @import './styles/variables.scss';
 
 *{

@@ -8,7 +8,11 @@ interface User {
 interface UserState {
   user: User | null;
   isLoggedIn: boolean;
-  preferences: Record<string, string>;
+  preferences: {
+    categories: string[];
+    sources: string[];
+    authors: string[];
+  };
   myFeed: ArticleItem[];
   myFeedLoading: boolean;
 }
@@ -16,11 +20,14 @@ interface UserState {
 const initialState: UserState = {
   user: null,
   isLoggedIn: false,
-  preferences: {},
+  preferences: {
+    categories: [],
+    sources: [],
+    authors: [],
+  },
   myFeed: [],
-  myFeedLoading: false, 
-  };
-
+  myFeedLoading: false,
+};
 
 export const fetchMyFeed = createAsyncThunk(
   "search/fetchMyFeed",
@@ -43,12 +50,18 @@ const userSlice = createSlice({
     },
     updateUserPreference: (
       state,
-      action: { payload: Record<string, string> }
+      action: {
+        payload: { categories: string[]; sources: string[]; authors: string[] };
+      }
     ) => {
       state.preferences = { ...state.preferences, ...action.payload };
     },
     clearUserPreferences: (state) => {
-      state.preferences = {};
+      state.preferences = {
+        categories: [],
+        sources: [],
+        authors: [],
+      };
     },
   },
   extraReducers: (builder) => {

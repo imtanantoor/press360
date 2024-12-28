@@ -24,7 +24,7 @@ function MyFeedPage() {
       return;
     }
 
-    dispatch(fetchMyFeed(preferences));
+    dispatch(fetchMyFeed({}));
   }, []);
 
 
