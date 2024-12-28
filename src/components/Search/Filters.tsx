@@ -4,6 +4,7 @@ import { RootState } from "../../redux/store";
 import { useAppSelector, useAppDispatch } from "../../hooks/reduxHooks";
 import { fetchSearchResults, setFilters } from "../../redux/searchSlice";
 import useDebounce from "../../hooks/debounce";
+import moment from "moment";
 
 function Filters() {
   const [isOpen1, setIsOpen1] = useState(false);
@@ -35,27 +36,34 @@ function Filters() {
     "The Washington Post",
   ];
 
-  function onSelect(key:string,value:string){
+  function onSelect(key: string, value: string) {
     dispatch(setFilters({ ...filters, [key]: value }));
     debouncedSearch({ ...filters, [key]: value });
   }
 
+  function onDateChange(date: string) {
+    dispatch(
+      setFilters({ ...filters, date: moment(date).format("YYYY-MM-DD") })
+    );
+    debouncedSearch({ ...filters, date: moment(date).format("YYYY-MM-DD") });
+  }
+
   return (
     <div className="filters">
-      <input type="date" />
+      <input type="date" onChange={(e) => onDateChange(e.target.value)} />
       <Dropdown
         options={categories}
-        onSelect={(category) => onSelect('category',category)}
+        onSelect={(category) => onSelect("category", category)}
         isOpen={isOpen1}
         setIsOpen={setIsOpen1}
-        selected={!!filters.category ? filters.category : 'Select category'}
+        selected={!!filters.category ? filters.category : "Select category"}
       />
       <Dropdown
         options={sources}
-        onSelect={(source) => onSelect('source',source)}
+        onSelect={(source) => onSelect("source", source)}
         isOpen={isOpen2}
         setIsOpen={setIsOpen2}
-        selected={!!filters.source ? filters.source : 'Select source'}
+        selected={!!filters.source ? filters.source : "Select source"}
       />
     </div>
   );

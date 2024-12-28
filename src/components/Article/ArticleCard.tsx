@@ -1,3 +1,4 @@
+import moment from "moment";
 import ArticleItem from "../../models/ArticleItem";
 import CustomImage from "../CustomImage";
 
@@ -10,7 +11,7 @@ function ArticleCard({ article }: { article: ArticleItem }) {
 
         <p>
           <span>Date: </span>
-          {article.date}
+          {moment(article.date).format("DD-MM-YYYY") || "N/A"}
         </p>
         <p>
           <span>Source: </span>
