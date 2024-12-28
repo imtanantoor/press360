@@ -6,17 +6,21 @@ function ArticleCard({ article }: { article: ArticleItem }) {
   return (
     <div className="article-card">
       <div className="article-card-content">
-        <h2>{article.title}</h2>
-        <p>{article.description}</p>
+        <div className="article-card-header">
+          <h2>{article.title}</h2>
+          <p>{article.description}</p>
+        </div>
 
-        <p>
-          <span>Date: </span>
-          {moment(article.date).format("DD-MM-YYYY") || "N/A"}
-        </p>
-        <p>
-          <span>Source: </span>
-          {article.source}
-        </p>
+        <div className="article-card-footer">
+          <p>
+            <span>Date: </span>
+            {moment(article.date).format("DD-MM-YYYY") || "N/A"}
+          </p>
+          <p>
+            <span>Source: </span>
+            {article.source}
+          </p>
+        </div>
       </div>
       <figure>
         <CustomImage image={article.image} alt={article.title + "image"} />
