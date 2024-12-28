@@ -44,7 +44,7 @@ function CategoryPage({
       ) : (
         <ArticleList
           articles={articlesWithImage}
-          title={`Latest in ${category}`}
+          title={`${category}`}
         />
       )}
     </NewsLayout>
