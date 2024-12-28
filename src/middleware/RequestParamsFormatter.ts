@@ -1,22 +1,13 @@
-import CheckListItem from "../models/CheckListItem.model";
-
 class RequestParamsFormatter {
   static formatRequestSearchParams(
     sourceName: string,
-    params: Record<string, string | CheckListItem[]>
+    params: Record<string, string | string[]>
   ): Record<string, string | string[]> {
-    
     let searchParams: Record<string, string | string[]> = {};
 
-    Object.entries(params).forEach(([key, value]) => {
-      if (typeof value === "string") {
-        searchParams[key] = value;
-      }
-
-      if (Array.isArray(value)) {
-        searchParams[key] = value.map((item) => item.id.toString());
-      }
-    });
+    searchParams = {
+      ...params,
+    };
 
     if (sourceName === "News Data IO") {
       delete searchParams.page;

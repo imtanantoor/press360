@@ -31,7 +31,7 @@ const initialState: UserState = {
 
 export const fetchMyFeed = createAsyncThunk(
   "search/fetchMyFeed",
-  async (userPreferences: Record<string, string>) => {
+  async (userPreferences: Record<string, string[]>) => {
     const articleService = ArticleService.getInstance();
     const articles = await articleService.searchArticles(userPreferences);
     return articles;

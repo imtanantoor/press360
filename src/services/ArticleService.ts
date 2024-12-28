@@ -115,7 +115,7 @@ class ArticleService {
   }
 
   async searchArticles(
-    searchParams: Record<string, string | CheckListItem[]>
+    searchParams: Record<string, string | string[]>
   ): Promise<ArticleItem[]> {
     const aggregatedSearchContent: ArticleItem[] = [];
 

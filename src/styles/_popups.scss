@@ -22,6 +22,17 @@
     background-color: white;
 }
 
+.preferences-popup-content-footer-button {
+ 
+  background-color: $secondary-color;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
 .preferences-popup-content-header {
   display: flex;
   justify-content: space-between;
