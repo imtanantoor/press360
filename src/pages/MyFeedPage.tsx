@@ -16,7 +16,7 @@ function MyFeedPage() {
   const { myFeed, myFeedLoading, preferences } = useAppSelector(
     (state: RootState) => state.user
   );
-  
+
   useEffect(() => {
     if (!isLoggedIn) {
       toast.error("Please login to view your feed");
@@ -25,8 +25,11 @@ function MyFeedPage() {
     }
 
     dispatch(fetchMyFeed(preferences));
-  }, []);
-
+  }, [
+    preferences.sources.length,
+    preferences.categories.length,
+    preferences.authors.length,
+  ]);
 
   return (
     <NewsLayout>

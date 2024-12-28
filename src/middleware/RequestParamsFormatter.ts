@@ -5,9 +5,14 @@ class RequestParamsFormatter {
   ): Record<string, string | string[]> {
     let searchParams: Record<string, string | string[]> = {};
 
-    searchParams = {
-      ...params,
-    };
+    Object.entries(params).forEach(([key, value]) => {
+      if (typeof value === "string") {
+        searchParams[key] = value;
+      }
+      if (Array.isArray(value) && value.length > 0) {
+        searchParams[key] = value;
+      }
+    });
 
     if (sourceName === "News Data IO") {
       delete searchParams.page;
