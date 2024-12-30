@@ -9,7 +9,7 @@ interface UserState {
   user: User | null;
   isLoggedIn: boolean;
   preferences: {
-    categories: string[];
+    category: string[];
     sources: string[];
     authors: string[];
   };
@@ -22,7 +22,7 @@ const defaultInitialState: UserState = {
   user: null,
   isLoggedIn: false,
   preferences: {
-    categories: [],
+    category: [],
     sources: [],
     authors: [],
   },
@@ -76,7 +76,7 @@ const userSlice = createSlice({
     updateUserPreference: (
       state,
       action: {
-        payload: { categories: string[]; sources: string[]; authors: string[] };
+        payload: { category: string[]; sources: string[]; authors: string[] };
       }
     ) => {
       state.preferences = { ...state.preferences, ...action.payload };
@@ -85,7 +85,7 @@ const userSlice = createSlice({
     },
     clearUserPreferences: (state) => {
       state.preferences = {
-        categories: [],
+        category: [],
         sources: [],
         authors: [],
       };
@@ -96,7 +96,7 @@ const userSlice = createSlice({
       state.isLoggedIn = false;
       state.user = null;
       state.preferences = {
-        categories: [],
+        category: [],
         sources: [],
         authors: [],
       };

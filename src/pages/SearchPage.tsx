@@ -37,8 +37,8 @@ function SearchPage() {
   }
 
   useEffect(() => {
-    dispatch(setFilters({ ...filters, q: keyword ?? "" }));
-    dispatch(fetchSearchResults({ ...filters, q: keyword ?? "" }));
+    dispatch(setFilters({ ...filters, q: searchValue ?? "" }));
+    dispatch(fetchSearchResults({ ...filters, q: searchValue ?? "" }));
   }, []);
 
   return (

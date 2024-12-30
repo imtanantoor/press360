@@ -13,7 +13,7 @@ function PreferencesPopup() {
     constants.CATEGORIES.map((item) => ({
       id: item.id,
       label: item.label,
-      checked: preferences.categories.includes(item.value),
+      checked: preferences.category?.includes(item.value),
       value: item.value,
     }))
   );
@@ -21,7 +21,7 @@ function PreferencesPopup() {
     constants.SOURCES.map((item) => ({
       id: item.id,
       label: item.label,
-      checked: preferences.sources.includes(item.value),
+      checked: preferences.sources?.includes(item.value),
       value: item.value,
     }))
   );
@@ -29,7 +29,7 @@ function PreferencesPopup() {
     constants.AUTHORS.map((item) => ({
       id: item.id,
       label: item.label,
-      checked: preferences.authors.includes(item.value),
+      checked: preferences.authors?.includes(item.value),
       value: item.value,
     }))
   );
@@ -37,7 +37,7 @@ function PreferencesPopup() {
   const handleSavePreferences = () => {
     dispatch(
       updateUserPreference({
-        categories: categories
+        category: categories
           .filter((category) => category.checked)
           .map((category) => category.value),
         sources: sources

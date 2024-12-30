@@ -21,18 +21,27 @@ class RequestParamsFormatter {
 
       searchParams.from_date = params.date as string;
       searchParams.to_date = params.date as string;
+      searchParams.domain = params.sources as string[];
+      searchParams.category = params.categories as string[];
 
+      delete searchParams.categories;
+      delete searchParams.authors;
+      delete searchParams.sources;
       delete searchParams.date;
+      delete searchParams.creator;
 
       return searchParams;
     }
 
     if (sourceName === "NewsAPI") {
-      delete searchParams.category;
-      delete searchParams.country;
       searchParams.from = params.date as string;
       searchParams.to = params.date as string;
+      searchParams.domains = params.sources as string[];
+      searchParams.q = !!params.q ? params.q : params.category as string[];
 
+      delete searchParams.sources;
+      delete searchParams.category;
+      delete searchParams.authors;
       delete searchParams.date;
 
       return searchParams;
