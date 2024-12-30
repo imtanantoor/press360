@@ -21,10 +21,14 @@ class RequestParamsFormatter {
 
       searchParams.from_date = params.date as string;
       searchParams.to_date = params.date as string;
-      searchParams.domain = params.sources as string[];
-      searchParams.category = params.categories as string[];
 
-      delete searchParams.categories;
+      if(params.sources.length > 0) {
+        searchParams.domain = params.sources as string[];
+      }
+      if(params.category.length > 0) {
+        searchParams.category = params.category as string[];
+      }
+      
       delete searchParams.authors;
       delete searchParams.sources;
       delete searchParams.date;
@@ -47,9 +51,20 @@ class RequestParamsFormatter {
       return searchParams;
     }
 
+    if(params.sources.length > 0) {
+      searchParams["reference-type"] = params.sources as string[];
+    }
+
+    if(params.category.length > 0) {
+      searchParams["section"] = params.category as string[];
+    }
+
     searchParams["from-date"] = params.date as string;
     searchParams["to-date"] = params.date as string;
+    searchParams.section = params.category as string[];
 
+    delete searchParams.category;
+    delete searchParams.sources;
     delete searchParams.date;
 
     return searchParams;
