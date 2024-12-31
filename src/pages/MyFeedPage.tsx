@@ -19,8 +19,8 @@ function MyFeedPage() {
 
   const filteredAuthors = myFeed.filter((article) => {
     if (preferences.authors.length > 0)
-      return ['Associated Press'].some((author) =>
-        article.author.includes(author)
+      return preferences.authors.some((author) =>
+        article?.author?.includes(author)
       );
     return true;
   });
