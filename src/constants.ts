@@ -4,9 +4,9 @@ const CATEGORIES = [
   { id: 3, label: "Entertainment", checked: false, value: "entertainment" },
 ];
 const SOURCES = [
-  { id: 1, label: "The New York Times", checked: false, value: "nytimes" },
-  { id: 2, label: "BBC News", checked: false, value: "bbc" },
-  { id: 3, label: "CNN", checked: false, value: "cnn" },
+  { id: 1, label: "The New York Times", checked: false, value: "nytimes.com" },
+  { id: 2, label: "BBC News", checked: false, value: "bbc.com" },
+  { id: 3, label: "CNN", checked: false, value: "cnn.com" },
 ];
 const AUTHORS = [
   { id: 1, label: "John Doe", checked: false, value: "john-doe" },

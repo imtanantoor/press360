@@ -10,7 +10,12 @@ class RequestParamsFormatter {
       let searchParams: Record<string, string | string[]> = {
         q: params.q ?? "",
         category: params.category ?? "",
-        domain: params.source ?? "",
+        domains:
+          !!params.source && params.source?.length > 0
+            ? (params.source as string[]).map(
+                (source: string) => source.split(".")[0]
+              )
+            : "",
       };
 
       Object.keys(searchParams).forEach((key) => {
@@ -26,7 +31,6 @@ class RequestParamsFormatter {
     }
 
     if (sourceName === "NewsAPI") {
-      console.log({ params });
       let searchParams: Record<string, string | string[]> = {
         q: !!params.q
           ? params.q

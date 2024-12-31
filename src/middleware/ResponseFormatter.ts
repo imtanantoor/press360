@@ -44,7 +44,7 @@ class ResponseFormatter {
         date: article.pubDate,
         source: article.source_name,
         content: article.content ?? "",
-        author: article.references,
+        author: article.references ?? [],
       };
       return articleData;
     });

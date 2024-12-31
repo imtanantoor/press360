@@ -17,6 +17,14 @@ function MyFeedPage() {
     (state: RootState) => state.user
   );
 
+  const filteredAuthors = myFeed.filter((article) => {
+    if (preferences.authors.length > 0)
+      return ['Associated Press'].some((author) =>
+        article.author.includes(author)
+      );
+    return true;
+  });
+
   useEffect(() => {
     if (!isLoggedIn) {
       toast.error("Please login to view your feed");
@@ -25,11 +33,7 @@ function MyFeedPage() {
     }
 
     dispatch(fetchMyFeed(preferences));
-  }, [
-    preferences.source,
-    preferences.category,
-    preferences.authors,
-  ]);
+  }, [preferences.source, preferences.category, preferences.authors]);
 
   return (
     <NewsLayout>
@@ -38,7 +42,7 @@ function MyFeedPage() {
           <h3>Loading...</h3>
         </div>
       ) : (
-        <ArticleList articles={myFeed} title="My Feed" />
+        <ArticleList articles={filteredAuthors} title="My Feed" />
       )}
     </NewsLayout>
   );

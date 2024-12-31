@@ -37,7 +37,7 @@ export const fetchArticles = createAsyncThunk(
 
 export const fetchSearchResults = createAsyncThunk(
   "search/fetchSearchResults",
-  async (searchParams: Record<string, string>) => {
+  async (searchParams: Record<string, string | string[]>) => {
     const articleService = ArticleService.getInstance();
     const articles = await articleService.searchArticles(searchParams);
     return articles;

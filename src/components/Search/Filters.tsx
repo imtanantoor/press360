@@ -5,6 +5,7 @@ import { useAppSelector, useAppDispatch } from "../../hooks/reduxHooks";
 import { fetchSearchResults, setFilters } from "../../redux/searchSlice";
 import useDebounce from "../../hooks/debounce";
 import moment from "moment";
+import constants from "../../constants";
 
 function Filters() {
   const [isOpen1, setIsOpen1] = useState(false);
@@ -13,33 +14,24 @@ function Filters() {
 
   const dispatch = useAppDispatch();
   const debouncedSearch = useDebounce(
-    (searchParams: Record<string, string>) =>
+    (searchParams: Record<string, string | string[]>) =>
       dispatch(fetchSearchResults(searchParams)),
     500
   );
 
-  const categories = [
-    "Business",
-    "Entertainment",
-    "General",
-    "Health",
-    "Sciences",
-    "Sports",
-    "Technology",
-  ];
-  const sources = [
-    "Google News",
-    "BBC News",
-    "CNN News",
-    "Reuters",
-    "The Guardian",
-    "The New York Times",
-    "The Washington Post",
-  ];
-
   function onSelect(key: string, value: string) {
-    dispatch(setFilters({ ...filters, [key]: value }));
-    debouncedSearch({ ...filters, [key]: value });
+    if (filters[key].includes(value)) {
+      dispatch(
+        setFilters({
+          ...filters,
+          [key]: [],
+        })
+      );
+      debouncedSearch({ ...filters, [key]: [] });
+    } else {
+      dispatch(setFilters({ ...filters, [key]: [value] }));
+      debouncedSearch({ ...filters, [key]: [value] });
+    }
   }
 
   function onDateChange(date: string) {
@@ -53,18 +45,18 @@ function Filters() {
     <div className="filters">
       <input type="date" onChange={(e) => onDateChange(e.target.value)} />
       <Dropdown
-        options={categories}
+        options={constants.CATEGORIES.map((cat) => cat.value)}
         onSelect={(category) => onSelect("category", category)}
         isOpen={isOpen1}
         setIsOpen={setIsOpen1}
-        selected={!!filters.category ? filters.category : "Select category"}
+        selected={!!filters.category ? filters.category[0] : "Select category"}
       />
       <Dropdown
-        options={sources}
+        options={constants.SOURCES.map((source) => source.value)}
         onSelect={(source) => onSelect("source", source)}
         isOpen={isOpen2}
         setIsOpen={setIsOpen2}
-        selected={!!filters.source ? filters.source : "Select source"}
+        selected={!!filters.source ? filters.source[0] : "Select source"}
       />
     </div>
   );
