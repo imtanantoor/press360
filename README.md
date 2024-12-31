@@ -9,4 +9,4 @@ This is an news aggregator applicaiton, that uses combines different news source
 4. Run the following command in the terminal
 5. docker build -t press360 .
 6. docker run -p 80:80 press360
-7. open the following link on your browser http:localhost:80
+7. open the following link on your browser http://localhost:80
