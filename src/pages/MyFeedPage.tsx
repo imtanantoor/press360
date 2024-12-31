@@ -26,7 +26,7 @@ function MyFeedPage() {
 
     dispatch(fetchMyFeed(preferences));
   }, [
-    preferences.sources,
+    preferences.source,
     preferences.category,
     preferences.authors,
   ]);

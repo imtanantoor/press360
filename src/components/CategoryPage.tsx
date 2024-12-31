@@ -10,7 +10,7 @@ interface CategoryPageProps {
   readonly pageSize?: string;
 }
 
-function CategoryPage({ category, pageSize = "10" }: CategoryPageProps) {
+function CategoryPage({ category }: CategoryPageProps) {
   const [articles, setArticles] = useState<ArticleItem[]>([]);
   const [loading, setLoading] = useState(true);
   const articlesWithImage = articles.filter((article) => article.image);
@@ -19,19 +19,12 @@ function CategoryPage({ category, pageSize = "10" }: CategoryPageProps) {
   useEffect(() => {
     const articleService = ArticleService.getInstance();
     articleService
-      .searchArticles({
-        q: category,
-        category: category,
-        section: category,
-        country: "us",
-        page: "1",
-        pageSize: pageSize,
-      })
+      .searchArticles({ category })
       .then((articles) => {
         setArticles(articles);
         setLoading(false);
       });
-  }, [category, filters.q, pageSize]);
+  }, [category, filters.q]);
 
   return (
     <NewsLayout>

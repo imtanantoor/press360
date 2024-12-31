@@ -21,7 +21,7 @@ function PreferencesPopup() {
     constants.SOURCES.map((item) => ({
       id: item.id,
       label: item.label,
-      checked: preferences.sources?.includes(item.value),
+      checked: preferences.source?.includes(item.value),
       value: item.value,
     }))
   );
@@ -40,7 +40,7 @@ function PreferencesPopup() {
         category: categories
           .filter((category) => category.checked)
           .map((category) => category.value),
-        sources: sources
+        source: sources
           .filter((source) => source.checked)
           .map((source) => source.value),
         authors: authors
