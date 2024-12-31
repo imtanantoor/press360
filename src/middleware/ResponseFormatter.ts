@@ -10,7 +10,8 @@ class ResponseFormatter {
         image: article.urlToImage,
         date: article.publishedAt,
         source: article.source.name,
-        content: article.content ?? '',
+        content: article.content ?? "",
+        author: article.author ? [article.author] : [],
       };
 
       return articleData;
@@ -22,11 +23,12 @@ class ResponseFormatter {
       let articleData: ArticleItem = {
         id: article?.id ?? index,
         title: article.webTitle,
-        description: article.description ?? '',
-        image: article.urlToImage ?? '',
+        description: article.description ?? "",
+        image: article.urlToImage ?? "",
         date: article.webPublicationDate,
-        source: 'The Guardian',
-        content: article.content ?? '',
+        source: "The Guardian",
+        content: article.content ?? "",
+        author: article.creator ?? [],
       };
       return articleData;
     });
@@ -37,11 +39,12 @@ class ResponseFormatter {
       let articleData: ArticleItem = {
         id: article?.article_id ?? index,
         title: article.title,
-        description: article.description ?? '',
-        image: article.image_url ?? '',
+        description: article.description ?? "",
+        image: article.image_url ?? "",
         date: article.pubDate,
         source: article.source_name,
-        content: article.content ?? '',
+        content: article.content ?? "",
+        author: article.references,
       };
       return articleData;
     });

@@ -6,6 +6,7 @@ interface ArticleItem {
   date: string;
   source: string;
   content: string;
+  author:string[]
 }
 
 export default ArticleItem;

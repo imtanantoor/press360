@@ -46,6 +46,7 @@ class ArticleService {
           ResponseFormatter.formatGuardianAPIResponse,
           {
             "api-key": process.env.REACT_APP_GUARDIAN_API_KEY ?? "",
+            "show-references": "author",
           }
         )
       );
